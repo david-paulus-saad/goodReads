@@ -1,0 +1,46 @@
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" routerLink="/admin-categories" routerLinkActive="active">Categories</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/admin-books" routerLinkActive="active">Books</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/admin-authors" routerLinkActive="active">Authors</a>
+  </li>
+
+</ul>
+
+<!---------ADD Category----------->
+<!-- Button to Open the Modal -->
+
+<button mat-raised-button (click)="openDialog()">Pick one</button>
+
+<!--table-->
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>John</td>
+      <td>Doe</td>
+      <td>john@example.com</td>
+    </tr>
+    <tr>
+      <td>Mary</td>
+      <td>Moe</td>
+      <td>mary@example.com</td>
+    </tr>
+    <tr>
+      <td>July</td>
+      <td>Dooley</td>
+      <td>july@example.com</td>
+    </tr>
+  </tbody>
+</table>
