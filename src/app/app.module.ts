@@ -14,6 +14,11 @@ import { MaterialModule } from './material.module';
 import {DialogAddCategory} from './admin-categories/admin-categories.component'
 import { AuthInterceptor, UnauthorizedInterceptor } from './services/auth-interceptor';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import { IndexComponent } from './index/index.component';
+import { BooksComponent } from './books/books.component';
+import { CategoryComponent } from './category/category.component';
+import { AuthorsComponent } from './authors/authors.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +27,12 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
     AdminCategoriesComponent,
     AdminBooksComponent,
     AdminAuthorsComponent,
-    DialogAddCategory
+    DialogAddCategory,
+    IndexComponent,
+    BooksComponent,
+    CategoryComponent,
+    AuthorsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
