@@ -1,5 +1,5 @@
 export class admin{
-    username:string,
+    username:string
     name:string
 
 };
