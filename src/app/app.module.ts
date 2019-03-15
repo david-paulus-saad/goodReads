@@ -19,6 +19,7 @@ import { BooksComponent } from './books/books.component';
 import { CategoryComponent } from './category/category.component';
 import { AuthorsComponent } from './authors/authors.component';
 import { HomeComponent } from './home/home.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { HomeComponent } from './home/home.component';
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     RestangularModule.forRoot(RestangularConfigFactory)
   ],

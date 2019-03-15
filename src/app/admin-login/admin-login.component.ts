@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-login',
@@ -6,10 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-login.component.css']
 })
 export class AdminLoginComponent implements OnInit {
-
-  constructor() { }
+  err=''
+  loginForm: FormGroup;
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.loginForm = this.fb.group({
+      username: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
+      password: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
+      confirm: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ]
+
+    });
+  }
+  onSubmit(){
+    console.log(this.loginForm.value);
   }
 
 }

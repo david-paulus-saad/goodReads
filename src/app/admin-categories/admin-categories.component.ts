@@ -19,6 +19,7 @@ export class AdminCategoriesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      console.log(result);
      // this.animal = result;
     });
   }
@@ -38,6 +39,12 @@ export class DialogAddCategory {
   onNoClick(): void {
     this.dialogRef.close();
   }
+ update(id:number){
+console.log("update"+id )
+ }
+ delete(id:number){
+  console.log("delete"+id )
 
+ }
 }
 

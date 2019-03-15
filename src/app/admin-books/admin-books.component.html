@@ -10,6 +10,31 @@
   </li>
 
 </ul>
-<p>
-  admin-books works!
-</p>
+
+<table class="table" *ngIf="books">
+    ID
+    photo
+    Name
+    CategoryId
+    AuthorId
+    Actions
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>CategoryId</th>
+        <th>AuthorId</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books">
+        <td>{{book._id}}</td>
+        <td>{{book.name}}</td>
+        <td>{{book.category}}</td>
+        <td>{{book.author}}</td>
+        <td> <button (click)="delete(book._id)">Delete</button><button (click)="update(book._id)">Update</button></td>
+      </tr>
+    
+    </tbody>
+  </table>

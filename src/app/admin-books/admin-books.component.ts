@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-books.component.css']
 })
 export class AdminBooksComponent implements OnInit {
-
+  books:any
   constructor() { }
 
   ngOnInit() {
   }
+delete(id:number){
 
+}
+update(id:number){
+  
+}
 }

@@ -11,6 +11,27 @@
 
 </ul>
 
-<p>
-  admin-authors works!
-</p>
+
+<table class="table" *ngIf="authors">
+  
+   
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>firstname</th>
+        <th>lastname</th>
+        <th>date of birth</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let author of authors">
+        <td>{{author._id}}</td>
+        <td>{{author.firstname}}</td>
+        <td>{{author.lastname}}</td>
+        <td>{{author.date}}</td>
+        <td> <button (click)="delete(author._id)">Delete</button><button (click)="author(author._id)">Update</button></td>
+      </tr>
+    
+    </tbody>
+  </table>
