@@ -1,3 +1,64 @@
-<p>
-  index works!
-</p>
+<!DOCTYPE html>
+<html>
+<head>
+        <link rel="stylesheet" href="user_index.css">
+<title>Login Page</title>
+</head>
+<body>
+
+    <div id="container">
+            <div id="top">
+                <img src="goodreads.jpeg">
+                <form id="search" method="POST">
+                <label>Email <input type="email" name="s-user" id="s-user"></label>
+                <label>Password<input type="password" name="s-pass" id="s-pass"></label>
+                <input type="submit" class="submit" value="Login">
+                </form>
+            </div>
+
+            <div id="center">
+                <div id="populars">
+                    <div id="poptray">
+                        <p>Popular Authors</p>
+                        <ul id="Authors_tray"></ul>
+                    </div>
+
+                    <div id="poptray">
+                        <p>Popular Books</p>
+                        <ul id="Books_tray"></ul>
+                    </div>
+
+                    <div id="poptray">
+                        <p>Popular Categories</p>
+                        <ul id="categories_tray"></ul>
+                    </div>
+                </div>
+                <div id="signform">
+                        <form action="/user/signup" method="POST">
+                            <label> First Name </label>
+                            <input id="field" type="text" name="first_name" pattern="^[A-Za-z][A-Za-z0-9]*$" required /> <br>
+                            <label> Last Name </label>
+                            <input id="field" type="text" name="last_name" pattern="^[A-Za-z][A-Za-z0-9]*$" required /> <br>
+                            <label> Username </label>
+                            <input id="field" type="username" name="username" pattern="^[A-Za-z][A-Za-z0-9]*$" required /> <br>
+                            <label> Password </label>
+                            <input id="field" type="password" name="password" required /> <br>
+                            <label> Avatar </label>
+                            <input id="filechooser" type="file" name="avatar" /> <br>
+                            <input id="signinbtn" type="submit" name="submit" value="signup" /> <br>
+                        </form>
+                </div>
+        </div>
+        <div class="nav">
+           
+            <li><a class="active" href="#home">Home</a></li> 
+           <li><a href="#news">News</a></li> 
+            <li><a href="#contact">Contact</a></li> 
+            <li><a href="#about">About</a></li> 
+       
+          </div>
+    </div>
+
+
+</body>
+</html>
