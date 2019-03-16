@@ -4,11 +4,13 @@ import {AdminLoginComponent} from './admin-login/admin-login.component';
 import {AdminCategoriesComponent} from './admin-categories/admin-categories.component'
 import {AdminBooksComponent} from './admin-books/admin-books.component'
 import {AdminAuthorsComponent} from './admin-authors/admin-authors.component'
+import {HomeComponent} from './home/home.component'
 const routes:Routes =[
   {path:'admin',component:AdminLoginComponent},
   {path:'admin-categories',component:AdminCategoriesComponent},
   {path:'admin-books',component:AdminBooksComponent},
-  {path:'admin-authors',component:AdminBooksComponent}
+  {path:'admin-authors',component:AdminBooksComponent},
+  {path:'user-home',component:HomeComponent}
 ]
 
 @NgModule({
