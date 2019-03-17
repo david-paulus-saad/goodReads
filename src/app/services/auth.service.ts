@@ -84,11 +84,12 @@ export class AuthService {
     localStorage.removeItem(this.tokenKey);
   }
 
-  signUp() {
-
+  signUp(user:any) {
+    return this.http.post<any>(baseURL + 'users/signup',user)
+      .catch(error => { return this.processHTTPMsgService.handleError(error); });
   }
 
-  logIn(user: any): Observable<any> {
+login(user: any): Observable<any> {
     return this.http.post<AuthResponse>(baseURL + 'users/login',
       {'username': user.username, 'password': user.password})
       .map(res => {

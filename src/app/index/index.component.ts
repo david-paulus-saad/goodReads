@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import{AuthService} from "../services/auth.service";
+import {  Router} from '@angular/router';
 
 @Component({
   selector: 'app-index',
@@ -14,7 +15,8 @@ export class IndexComponent implements OnInit {
   authors:any
   categories:any
   books:any
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,private authService:AuthService
+    ,private router:Router) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -33,9 +35,22 @@ export class IndexComponent implements OnInit {
   }
   onSubmit(){
     console.log(this.loginForm.value);
+    this.authService.login(this.loginForm.value).subscribe((doc)=>{
+      if(doc.success){
+        this.router.navigate(['/home']);
+
+      }
+    },err=>console.log(err));
+
   }
   regiser(){
     console.log(this.registerForm.value);
+    this.authService.signUp(this.registerForm.value).subscribe((doc)=>{
+      if(doc.success){
+        console.log("registeration succuss , login ");
+      }
+    },err=>console.log(err))
+
   }
 
 

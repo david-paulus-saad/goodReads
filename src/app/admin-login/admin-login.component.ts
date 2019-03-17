@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {AuthService} from '../services/auth.service'
+import {  Router } from '@angular/router';
+
 @Component({
   selector: 'app-admin-login',
   templateUrl: './admin-login.component.html',
@@ -9,7 +11,8 @@ import {AuthService} from '../services/auth.service'
 export class AdminLoginComponent implements OnInit {
   err=''
   loginForm: FormGroup;
-  constructor(private fb: FormBuilder,private authService:AuthService) { }
+  constructor(private fb: FormBuilder,private authService:AuthService,
+    private router:Router) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -19,12 +22,13 @@ export class AdminLoginComponent implements OnInit {
   }
   onSubmit() {
     console.log("User: ", this.loginForm.value);
-    this.authService.logIn( 
+    this.authService.login( 
        {username:this.loginForm.value.username,
         password:this.loginForm.value.password})
       .subscribe(res => {
         if (res.success) {
-         console.log(res)          
+          this.router.navigate(['/admin-categories']);
+         
         }
         else {
           console.log(res);

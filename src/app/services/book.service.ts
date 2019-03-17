@@ -41,7 +41,7 @@ export class BookService {
     }
 
     deleteUserBook(book_id:number){
-      this.http.delete(baseURL+'user/books/'+book_id)
+      this.http.delete(baseURL+'users/books/'+book_id)
       .catch(error => { return this.processHTTPMsgService.handleError(error); });
 
     }
@@ -53,7 +53,18 @@ export class BookService {
       return this.http.get<book>(baseURL+'goodreads/'+authorID+'/author_books')
       .catch(error => { return this.processHTTPMsgService.handleError(error); });
     }
+    getWishlist():Observable<any>{
+      return this.http.get<any>(baseURL+'users/wishlist')
+      .catch(error => { return this.processHTTPMsgService.handleError(error); });
 
-    
+    }
+   getRead():Observable<any>{
+    return this.http.get<any>(baseURL+'users/read')
+    .catch(error => { return this.processHTTPMsgService.handleError(error); });
+   }
+    getCurrent():Observable<any>{
+      return this.http.get<any>(baseURL+'users/current')
+      .catch(error => { return this.processHTTPMsgService.handleError(error); });
+    } 
 
 }
