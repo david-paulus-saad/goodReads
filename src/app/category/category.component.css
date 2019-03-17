@@ -27,6 +27,7 @@
     height: 250px;
     background-color: white;
     margin: 50px;
+    border-radius: 0px 20px;
     display: inline-block;
 }
   /* Change the color of links on hover */
