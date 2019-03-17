@@ -1,16 +1,52 @@
 <ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link active" routerLink="/admin-categories" routerLinkActive="active">Categories</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" routerLink="/admin-books" routerLinkActive="active">Books</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" routerLink="/admin-authors" routerLinkActive="active">Authors</a>
-  </li>
-
-</ul>
-
-<p>
-  admin-authors works!
-</p>
+    <li class="nav-item">
+      <a class="nav-link active" routerLink="/admin-categories" routerLinkActive="active">Categories</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/admin-books" routerLinkActive="active">Books</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/admin-authors" routerLinkActive="active">Authors</a>
+    </li>
+  
+  </ul>
+  
+  <!---------ADD Category----------->
+  <!-- Button to Open the Modal -->
+  
+  <button mat-raised-button (click)="openDialog()">Add Author</button>
+  
+  <!--table-->
+  
+  <table class="table" *ngIf="authors">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Date of Birth</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ca of authors">
+        <td>{{ca._id}}</td>
+        <td>{{ca.fname}}</td>   
+        <td>{{ca.lname}}</td>     
+        <td>{{ca.birth_date}}</td>     
+  
+        <td> <button (click)="delete(ca._id)">Delete</button><button (click)="updateDialog(ca._id)">Update</button></td>
+      </tr>
+    
+    </tbody>
+  </table>
+  <div [hidden]="authors">
+    <p>No Author Exist !</p>
+  </div>
+  <div *ngIf="err">
+      <h2>Sorry For That</h2>
+      
+     <p>
+    {{err}}
+     </p>
+    </div>

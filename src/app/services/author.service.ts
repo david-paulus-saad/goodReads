@@ -2,36 +2,44 @@ import { Injectable } from '@angular/core';
 import{Observable} from 'rxjs/Observable';
 import {baseURL} from '../shared/baseurl';
 import { RestangularModule, Restangular } from 'ngx-restangular';
+import { ProcessHTTPMsgService } from './process-httpmsg.service';
+import 'rxjs/add/operator/catch';
+import { HttpClient } from '@angular/common/http';
+import {author} from '../shared/author'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthorService {
 
-  constructor(private restangular:Restangular) { }
-  getAuthors():Observable<string>{
-    return this.restangular.all('authors').getList();
-  }
- getAuthor(id: number):Observable<string>{
-   return this.restangular.one('authors',id).get()
+  constructor(private http: HttpClient,
+    private processHTTPMsgService: ProcessHTTPMsgService) { }
+  // getAuthors():Observable<string>{
+    
+  // }
+//  getAuthor(id: number):Observable<string>{
+//  }
+ createAuthor(author: author):Observable<author[]>{
+   return this.http.post<author[]>(baseURL+'admin/authors',{author})
+   .catch(error => { return this.processHTTPMsgService.handleError(error); });
+
+ }  
+ getAuthors():Observable<author[]>{
+  return this.http.get<author[]>(baseURL+'goodreads/authors')
+  .catch(error => { return this.processHTTPMsgService.handleError(error); });
  }
- setAuthor(author: string):Observable<string>{
-   return this.restangular.all('authors').post(author)
- }   
- deleteAuthor(id: number):Observable<string>{
-   return this.restangular.one('authors',id).remove()
+
+ deleteAuthor(id: number):Observable<author[]>{
+  return this.http.delete<author[]>(baseURL+'admin/authors/'+id)
+  .catch(error => { return this.processHTTPMsgService.handleError(error); });
+
  }    
 
 
-//  updateAuthor(id:number,author:string):Observable<string>{
-//   var baseUsers = this.restangular.one('/authors', id)
-//   baseUsers.get().subscribe((user)=>{
-//       user.name = author
-//       user.username = author
-//       user.email = author
-//    return user.put()
-//   })
-//  }
+ updateAuthor(id:number,author:author):Observable<author[]>{
+  return this.http.put<author[]>(baseURL+'admin/authors/'+id,{author})
+  .catch(error => { return this.processHTTPMsgService.handleError(error); });
+ }
  
 
 }

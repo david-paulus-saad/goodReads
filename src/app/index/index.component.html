@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-        <link rel="stylesheet" href="user_index.css">
-<title>Login Page</title>
 </head>
 <body>
 
     <div id="container">
             <div id="top">
                 <img src="goodreads.jpeg">
-                <form id="search" method="POST">
-                <label>Email <input type="email" name="s-user" id="s-user"></label>
-                <label>Password<input type="password" name="s-pass" id="s-pass"></label>
-                <input type="submit" class="submit" value="Login">
+                <form id="search" novalidate [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <label>Username <input type="username" name="s-user" id="s-user" formControlName="username"></label>
+                <label>Password<input type="password" name="s-pass" id="s-pass" formControlName="password"></label>
+                <input type="submit" class="submit" value="Login" [disabled]="loginForm.invalid">
                 </form>
             </div>
 
@@ -20,32 +18,38 @@
                 <div id="populars">
                     <div id="poptray">
                         <p>Popular Authors</p>
-                        <ul id="Authors_tray"></ul>
+                        <ul id="Authors_tray" *ngFor="let author of authors">
+                            {{author}}
+                        </ul>
                     </div>
 
                     <div id="poptray">
                         <p>Popular Books</p>
-                        <ul id="Books_tray"></ul>
+                        <ul id="Books_tray" *ngFor="let book of books">
+                            {{book}}
+                        </ul>
                     </div>
 
                     <div id="poptray">
                         <p>Popular Categories</p>
-                        <ul id="categories_tray"></ul>
+                        <ul id="categories_tray" *ngFor="let cat of categories">
+                            
+                                {{ cat }}</ul>
                     </div>
                 </div>
                 <div id="signform">
-                        <form action="/user/signup" method="POST">
+                        <form novalidate [formGroup]="registerForm" (ngSubmit)="regiser()" >
                             <label> First Name </label>
-                            <input id="field" type="text" name="first_name" pattern="^[A-Za-z][A-Za-z0-9]*$" required /> <br>
+                            <input id="field" type="text" formControlName="first_name"  /> <br>
                             <label> Last Name </label>
-                            <input id="field" type="text" name="last_name" pattern="^[A-Za-z][A-Za-z0-9]*$" required /> <br>
+                            <input id="field" type="text" formControlName="last_name"  /> <br>
                             <label> Username </label>
-                            <input id="field" type="username" name="username" pattern="^[A-Za-z][A-Za-z0-9]*$" required /> <br>
+                            <input id="field" type="username" formControlName="username"  /> <br>
                             <label> Password </label>
-                            <input id="field" type="password" name="password" required /> <br>
+                            <input id="field" type="password" formControlName="password"  /> <br>
                             <label> Avatar </label>
-                            <input id="filechooser" type="file" name="avatar" /> <br>
-                            <input id="signinbtn" type="submit" name="submit" value="signup" /> <br>
+                            <input id="filechooser" type="file" formControlName="avatar" /> <br>
+                            <input id="signinbtn" type="submit" name="submit" value="signup"  [disabled]="loginForm.invalid" /> <br>
                         </form>
                 </div>
         </div>
