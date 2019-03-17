@@ -66,5 +66,10 @@ export class BookService {
       return this.http.get<any>(baseURL+'users/current')
       .catch(error => { return this.processHTTPMsgService.handleError(error); });
     } 
+    getIndex():Observable<any>{
+      return this.http.get<any>(baseURL+'goodreads/index')
+      .catch(error => { return this.processHTTPMsgService.handleError(error); });
+
+    }
 
 }

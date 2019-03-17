@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import{AuthService} from "../services/auth.service";
+import {BookService} from '../services/book.service'
 import {  Router} from '@angular/router';
 
 @Component({
@@ -16,9 +17,15 @@ export class IndexComponent implements OnInit {
   categories:any
   books:any
   constructor(private fb: FormBuilder,private authService:AuthService
-    ,private router:Router) { }
+    ,private router:Router,private bookService:BookService) { }
 
   ngOnInit() {
+  this.bookService.getIndex().subscribe((doc)=>{
+    this.categories=doc.categories;
+    this.books=doc.books;
+    this.authors=doc.authors;
+  },err=>console.log(err))
+    
     this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
       password: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ]
