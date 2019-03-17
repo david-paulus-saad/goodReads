@@ -1,0 +1,45 @@
+<mat-toolbar mat-dialog-title color="primary">
+        Add Author
+        <span class="flex-spacer"></span>
+        <button mat-button mat-dialog-close>&times;</button>
+      </mat-toolbar>
+      
+      <form novalidate #addForm="ngForm" (ngSubmit)="onSubmit()">
+      
+        <mat-dialog-content>
+          <p>
+            <mat-form-field >
+              <input matInput placeholder="First Name" type="text" [(ngModel)]="author.fname" name="fname" #Aname="ngModel" required>
+            
+            </mat-form-field>
+            
+          </p>
+          <p>
+                <mat-form-field >
+                  <input matInput placeholder="Last Name" type="text" [(ngModel)]="author.lname" name="lname" #Aname="ngModel" required>
+                
+                </mat-form-field>
+                
+              </p>
+              <p>
+                    <mat-form-field >
+                      <input matInput placeholder="Date of Birth" type="text" [(ngModel)]="author.birth_date" name="dob" #Aname="ngModel" required>
+                    
+                    </mat-form-field>
+                    
+            </p>
+        </mat-dialog-content>
+        <mat-dialog-actions>
+          <span class="flex-spacer"></span>
+          <button mat-button mat-dialog-close>Cancel</button>
+          <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="addForm.form.invalid" >Add</button>
+        </mat-dialog-actions>
+      </form>
+      <div *ngIf="err">
+        <h2>Sorry For That</h2>
+        
+       <p>
+      {{err}}
+       </p>
+      </div>
+      

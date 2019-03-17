@@ -9,7 +9,7 @@ const routes:Routes =[
   {path:'admin',component:AdminLoginComponent},
   {path:'admin-categories',component:AdminCategoriesComponent},
   {path:'admin-books',component:AdminBooksComponent},
-  {path:'admin-authors',component:AdminBooksComponent},
+  {path:'admin-authors',component:AdminAuthorsComponent},
   {path:'user-home',component:HomeComponent}
 ]
 

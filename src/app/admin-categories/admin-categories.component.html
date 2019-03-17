@@ -14,11 +14,11 @@
 <!---------ADD Category----------->
 <!-- Button to Open the Modal -->
 
-<button mat-raised-button (click)="openDialog()">Pick one</button>
+<button mat-raised-button (click)="openDialog()">Add Category</button>
 
 <!--table-->
 
-<table class="table" *ngIf="cats">
+<table class="table" *ngIf="cat">
   <thead>
     <tr>
       <th>ID</th>
@@ -27,11 +27,21 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let cat of cats">
-      <td>{{cat._id}}</td>
-      <td>{{cat.name}}</td>
-      <td> <button (click)="delete(cat._id)">Delete</button><button (click)="update(cat._id)">Update</button></td>
+    <tr *ngFor="let ca of cat">
+      <td>{{ca._id}}</td>
+      <td>{{ca.name}}</td>     
+      <td> <button (click)="delete(ca._id)">Delete</button><button (click)="updateDialog(ca._id)">Update</button></td>
     </tr>
   
   </tbody>
 </table>
+<div [hidden]="cat">
+  <p>No Category Exist !</p>
+</div>
+<div *ngIf="err">
+    <h2>Sorry For That</h2>
+    
+   <p>
+  {{err}}
+   </p>
+  </div>

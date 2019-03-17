@@ -24,6 +24,10 @@ export class AuthorService {
    .catch(error => { return this.processHTTPMsgService.handleError(error); });
 
  }  
+ getAuthors():Observable<author[]>{
+  return this.http.get<author[]>(baseURL+'goodreads/authors')
+  .catch(error => { return this.processHTTPMsgService.handleError(error); });
+ }
 
  deleteAuthor(id: number):Observable<author[]>{
   return this.http.delete<author[]>(baseURL+'admin/authors/'+id)

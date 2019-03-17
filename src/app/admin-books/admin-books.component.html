@@ -11,30 +11,43 @@
 
 </ul>
 
+<!---------ADD Category----------->
+<!-- Button to Open the Modal -->
+
+<button mat-raised-button (click)="openDialog()">Add Category</button>
+
+<!--table-->
+
 <table class="table" *ngIf="books">
-    ID
-    photo
-    Name
-    CategoryId
-    AuthorId
-    Actions
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>CategoryId</th>
-        <th>AuthorId</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let book of books">
-        <td>{{book._id}}</td>
-        <td>{{book.name}}</td>
-        <td>{{book.category}}</td>
-        <td>{{book.author}}</td>
-        <td> <button (click)="delete(book._id)">Delete</button><button (click)="update(book._id)">Update</button></td>
-      </tr>
+  <thead>
+    <tr>
+
+      <th>ID</th>
+      <th>Photo</th>
+      <th>Name</th>
+      <th>Category Id</th>
+      <th>Author Id</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let book of books">
+      <td>{{book._id}}</td>
+      <td>{{book.cover}}</td>     
+      <td>{{book.category_id}}</td>
+      <td>{{book.author_id}}</td>   
+      <td> <button (click)="delete(book._id)">Delete</button><button (click)="updateDialog(book._id)">Update</button></td>
+    </tr>
+  
+  </tbody>
+</table>
+<div [hidden]="books">
+  <p>No Books Exist !</p>
+</div>
+<div *ngIf="err">
+    <h2>Sorry For That</h2>
     
-    </tbody>
-  </table>
+   <p>
+  {{err}}
+   </p>
+  </div>
