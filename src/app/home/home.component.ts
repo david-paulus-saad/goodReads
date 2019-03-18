@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {book} from '../shared/book'
 import {BookService} from '../services/book.service'
+import {AuthService} from  '../services/auth.service'
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -9,9 +10,14 @@ import {BookService} from '../services/book.service'
 export class HomeComponent implements OnInit {
  books:book[];
  err:string;
-  constructor(private bookService:BookService) { }
+ username:string
+  constructor(private bookService:BookService
+    ,private authService:AuthService) { }
 
   ngOnInit() {
+    this.authService.getUsername().subscribe((name)=>{
+      this.username=name
+    });
     this.getAll();
   }
   getAll(){

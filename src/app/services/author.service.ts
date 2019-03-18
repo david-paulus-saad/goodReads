@@ -20,7 +20,7 @@ export class AuthorService {
 //  getAuthor(id: number):Observable<string>{
 //  }
  createAuthor(author: author):Observable<author[]>{
-   return this.http.post<author[]>(baseURL+'admin/authors',{author})
+   return this.http.post<author[]>(baseURL+'admin/authors',author)
    .catch(error => { return this.processHTTPMsgService.handleError(error); });
 
  }  
@@ -37,7 +37,7 @@ export class AuthorService {
 
 
  updateAuthor(id:number,author:author):Observable<author[]>{
-  return this.http.put<author[]>(baseURL+'admin/authors/'+id,{author})
+  return this.http.put<author[]>(baseURL+'admin/authors/'+id,author)
   .catch(error => { return this.processHTTPMsgService.handleError(error); });
  }
  

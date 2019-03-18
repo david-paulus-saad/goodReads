@@ -8,14 +8,17 @@ import {HomeComponent} from './home/home.component'
 import {BooksComponent} from './books/books.component'
 import {AuthorsComponent} from './authors/authors.component'
 import {IndexComponent} from './index/index.component'
+import {AboutComponent} from './about/about.component'
+
 const routes:Routes =[
   {path:'admin',component:AdminLoginComponent},
   {path:'admin-categories',component:AdminCategoriesComponent},
   {path:'admin-books',component:AdminBooksComponent},
-  {path:'admin-authors',component:AdminBooksComponent},
+  {path:'admin-authors',component:AdminAuthorsComponent},
   {path:'home',component:HomeComponent},
   {path:'books',component:BooksComponent},
   {path:'authors',component:AuthorsComponent},
+  {path:'about',component:AboutComponent},
   {path:'',component:IndexComponent}
 ]
 

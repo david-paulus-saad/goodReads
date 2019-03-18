@@ -17,6 +17,10 @@ import {DialogUpdateCategory} from './admin-categories/admin-categories.componen
 import {DialogAddAuthor} from './admin-authors/admin-authors.component'
 import {DialogUpdateAuthor} from './admin-authors/admin-authors.component'
 
+import {DialogAddBook} from './admin-books/admin-books.component'
+import {DialogUpdateBook} from './admin-books/admin-books.component'
+
+import {baseURL} from './shared/baseurl';
 import { AuthInterceptor, UnauthorizedInterceptor } from './services/auth-interceptor';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import { IndexComponent } from './index/index.component';
@@ -29,7 +33,8 @@ import {AuthService} from './services/auth.service'
 import {BookService} from './services/book.service'
 import {CategoryService} from './services/category.service'
 import { HttpClientModule } from '@angular/common/http';
-import {ProcessHTTPMsgService} from './services/process-httpmsg.service'
+import {ProcessHTTPMsgService} from './services/process-httpmsg.service';
+import { AboutComponent } from './about/about.component'
 
 @NgModule({
   declarations: [
@@ -42,11 +47,14 @@ import {ProcessHTTPMsgService} from './services/process-httpmsg.service'
     DialogUpdateCategory,
     DialogAddAuthor,
     DialogUpdateAuthor,
+    DialogAddBook,
+    DialogUpdateBook,
     IndexComponent,
     BooksComponent,
     CategoryComponent,
     AuthorsComponent,
-    HomeComponent
+    HomeComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
@@ -56,11 +64,13 @@ import {ProcessHTTPMsgService} from './services/process-httpmsg.service'
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  entryComponents: [DialogAddCategory , DialogUpdateCategory,DialogAddAuthor , DialogUpdateAuthor],
+  entryComponents: [DialogAddCategory , DialogUpdateCategory,DialogAddAuthor , DialogUpdateAuthor,DialogAddBook,
+    DialogUpdateBook],
   providers: [
     AuthService,
     BookService,
     CategoryService,
+    { provide: 'BaseURL', useValue: baseURL },
     ProcessHTTPMsgService,
     {
     provide: HTTP_INTERCEPTORS,

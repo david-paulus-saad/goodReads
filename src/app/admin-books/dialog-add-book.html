@@ -22,19 +22,34 @@
                 
               </p>
               <p>
-                    <mat-form-field >
-                      <input matInput placeholder="Author Id" type="text" [(ngModel)]="book.author_id" name="dob" #Aname="ngModel" required>
+                    <select  [(ngModel)]="book.author_id" name="author"required>
+                      
+                          <option *ngFor="let author of authors" [value]="author._id " name="dob"  >{{author.fname }} {{author.lname}}</option>
+
                     
-                    </mat-form-field>
+                    
+                    </select>
                     
             </p>
             <p>
-                <mat-form-field >
-                  <input matInput placeholder="Category Id" type="text" [(ngModel)]="book.category_id" name="dob" #Aname="ngModel" required>
+                <select  [(ngModel)]="book.category_id" name="category"required>
+                  
+                      <option *ngFor="let cat of category" [value]="cat._id " name="dob"  >{{cat.name}}</option>
+
+                  
                 
-                </mat-form-field>
+                </select>
                 
         </p>
+
+       
+          <div >
+            <input  placeholder="cover photo" type="file" [(ngModel)]="book.cover" name="dob" #Aname="ngModel" required />
+            
+          </div>
+
+          
+
         </mat-dialog-content>
         <mat-dialog-actions>
           <span class="flex-spacer"></span>

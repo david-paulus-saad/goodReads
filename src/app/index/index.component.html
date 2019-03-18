@@ -3,7 +3,10 @@
 <head>
 </head>
 <body>
-
+    <div *ngIf="username">
+        <h3>Hello , {{username}}</h3>
+        <button (click)="logout()">Logout</button>
+    </div>
     <div id="container">
             <div id="top">
                 <img src="goodreads.jpeg">
@@ -19,14 +22,14 @@
                     <div id="poptray">
                         <p>Popular Authors</p>
                         <ul id="Authors_tray" *ngFor="let author of authors">
-                            {{author}}
+                            {{author.fname}}  {{author.lname}} 
                         </ul>
                     </div>
 
                     <div id="poptray">
                         <p>Popular Books</p>
                         <ul id="Books_tray" *ngFor="let book of books">
-                            {{book}}
+                            {{book.name}}
                         </ul>
                     </div>
 
@@ -34,31 +37,29 @@
                         <p>Popular Categories</p>
                         <ul id="categories_tray" *ngFor="let cat of categories">
                             
-                                {{ cat }}</ul>
+                                {{ cat.name }}</ul>
                     </div>
                 </div>
                 <div id="signform">
                         <form novalidate [formGroup]="registerForm" (ngSubmit)="regiser()" >
                             <label> First Name </label>
-                            <input id="field" type="text" formControlName="first_name"  /> <br>
+                            <input id="field1" type="text" formControlName="first_name"  /> <br>
                             <label> Last Name </label>
-                            <input id="field" type="text" formControlName="last_name"  /> <br>
+                            <input id="field2" type="text" formControlName="last_name"  /> <br>
                             <label> Username </label>
-                            <input id="field" type="username" formControlName="username"  /> <br>
+                            <input id="field3" type="username" formControlName="username"  /> <br>
                             <label> Password </label>
-                            <input id="field" type="password" formControlName="password"  /> <br>
+                            <input id="field4" type="password" formControlName="password"  /> <br>
                             <label> Avatar </label>
                             <input id="filechooser" type="file" formControlName="avatar" /> <br>
-                            <input id="signinbtn" type="submit" name="submit" value="signup"  [disabled]="loginForm.invalid" /> <br>
+                            <input id="signinbtn" type="submit" name="submit" value="signup"  [disabled]="registerForm.invalid" /> <br>
                         </form>
                 </div>
         </div>
         <div class="nav">
            
-            <li><a class="active" href="#home">Home</a></li> 
-           <li><a href="#news">News</a></li> 
-            <li><a href="#contact">Contact</a></li> 
-            <li><a href="#about">About</a></li> 
+            <li><a class="active" [routerLink]="['/home']" >Home</a></li> 
+            <li><a [routerLink]="['/about']">About</a></li> 
        
           </div>
     </div>

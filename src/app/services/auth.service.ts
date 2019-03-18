@@ -90,7 +90,7 @@ export class AuthService {
   }
 
 login(user: any): Observable<any> {
-    return this.http.post<AuthResponse>(baseURL + 'users/login',
+    return this.http.post<AuthResponse>(baseURL + 'users/signin',
       {'username': user.username, 'password': user.password})
       .map(res => {
           this.storeUserCredentials({username: user.username, token: res.token});
@@ -98,6 +98,15 @@ login(user: any): Observable<any> {
       })
         .catch(error => { return this.processHTTPMsgService.handleError(error); });
   }
+loginAdmin(user: any):Observable<any>{
+  return this.http.post<AuthResponse>(baseURL + 'admin/signin',
+  {'username': user.username, 'password': user.password})
+  .map(res => {
+      this.storeUserCredentials({username: user.username, token: res.token});
+      return {'success': true, 'username': user.username };
+  })
+    .catch(error => { return this.processHTTPMsgService.handleError(error); });
+}  
 
   logOut() {
     this.destroyUserCredentials();

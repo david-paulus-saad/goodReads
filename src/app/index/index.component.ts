@@ -16,11 +16,32 @@ export class IndexComponent implements OnInit {
   authors:any
   categories:any
   books:any
+  username:string
   constructor(private fb: FormBuilder,private authService:AuthService
     ,private router:Router,private bookService:BookService) { }
-
+  logout(){
+    if(this.authService.isLoggedIn()){
+      this.authService.logOut()
+    }
+    /**
+     * 
+     *  if(this.authService.isLoggedIn()) {
+    this.authService.getUsername().subscribe((name)=>{
+      this.username=name;
+    })
+  }
+     */
+    
+  }
   ngOnInit() {
+  if(this.authService.isLoggedIn()) {
+    this.authService.getUsername().subscribe((name)=>{
+      this.username=name;
+    })
+  }
+  
   this.bookService.getIndex().subscribe((doc)=>{
+    console.log("get index ",doc);
     this.categories=doc.categories;
     this.books=doc.books;
     this.authors=doc.authors;
@@ -35,7 +56,8 @@ export class IndexComponent implements OnInit {
       first_name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
       last_name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
       username: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
-      password: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ]
+      password: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
+      avatar:''
 
     });
     
@@ -43,6 +65,7 @@ export class IndexComponent implements OnInit {
   onSubmit(){
     console.log(this.loginForm.value);
     this.authService.login(this.loginForm.value).subscribe((doc)=>{
+      console.log("login success",doc);
       if(doc.success){
         this.router.navigate(['/home']);
 
@@ -53,8 +76,11 @@ export class IndexComponent implements OnInit {
   regiser(){
     console.log(this.registerForm.value);
     this.authService.signUp(this.registerForm.value).subscribe((doc)=>{
+      console.log("reg success",doc)
       if(doc.success){
         console.log("registeration succuss , login ");
+        this.registerForm.setValue({username:'',password:'',first_name:'',last_name:'',avatar:''});
+
       }
     },err=>console.log(err))
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef} from '@angular/material';
 import {author} from '../shared/author'
 import {AuthorService} from '../services/author.service'
-
+import {AuthService} from '../services/auth.service'
 @Component({
   selector: 'app-admin-authors',
   templateUrl: './admin-authors.component.html',
@@ -12,9 +12,29 @@ export class AdminAuthorsComponent implements OnInit {
 
   authors:author[]
    err:string
-  constructor(public dialog: MatDialog,private catService:AuthorService) { }
-
+   username:string
+  constructor(public dialog: MatDialog,private catService:AuthorService,
+    private authService:AuthService) { }
+  logout(){
+    if(this.authService.isLoggedIn()){
+      this.authService.logOut()
+    }
+    /**
+     * 
+     *  if(this.authService.isLoggedIn()) {
+    this.authService.getUsername().subscribe((name)=>{
+      this.username=name;
+    })
+  }
+     */
+    
+  }
   ngOnInit() {
+    if(this.authService.isLoggedIn()) {
+      this.authService.getUsername().subscribe((name)=>{
+        this.username=name;
+      })
+    }
     this.catService.getAuthors().subscribe((cats)=>{
       console.log("author",cats)
      this.authors=cats;
@@ -27,6 +47,7 @@ export class AdminAuthorsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      console.log("add this author",result)
      if(result){
       this.catService.createAuthor(result).subscribe(cat=>{
         console.log("author",cat)
@@ -70,7 +91,7 @@ export class AdminAuthorsComponent implements OnInit {
   templateUrl: './dialog-add-author.html',
 })
 export class DialogAddAuthor {
-  author={fname:'',lname:'',birth_date:''}
+  author={fname:'',lname:'',birth_date:'',author_photo:''}
   err:string
   constructor(
     public dialogRef: MatDialogRef<DialogAddAuthor> ) {}

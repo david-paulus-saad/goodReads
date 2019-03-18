@@ -1,0 +1,16 @@
+<div *ngIf="cat">
+<mat-card class="example-card" *ngFor="let ca of cat" >
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{ca.name}}</mat-card-title>
+      <mat-card-subtitle>{{ca.name}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+       {{ca.name}}
+      </p>
+    </mat-card-content>
+   
+  </mat-card>
+  </div>

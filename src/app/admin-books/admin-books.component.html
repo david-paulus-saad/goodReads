@@ -8,13 +8,19 @@
   <li class="nav-item">
     <a class="nav-link" routerLink="/admin-authors" routerLinkActive="active">Authors</a>
   </li>
-
+  <li>
+    <div *ngIf="username">
+      <h3>Hello , {{username}}</h3>
+      <button (click)="logout()">Logout</button>
+  </div>
+  
+   </li>
 </ul>
 
 <!---------ADD Category----------->
 <!-- Button to Open the Modal -->
 
-<button mat-raised-button (click)="openDialog()">Add Category</button>
+<button mat-raised-button (click)="openDialog()">Add Book</button>
 
 <!--table-->
 
@@ -33,7 +39,10 @@
   <tbody>
     <tr *ngFor="let book of books">
       <td>{{book._id}}</td>
-      <td>{{book.cover}}</td>     
+      <td><img src={{BaseURL + book.cover}} width="30px" height="30px"></td>     
+     <td>
+       {{book.name}}
+     </td>
       <td>{{book.category_id}}</td>
       <td>{{book.author_id}}</td>   
       <td> <button (click)="delete(book._id)">Delete</button><button (click)="updateDialog(book._id)">Update</button></td>

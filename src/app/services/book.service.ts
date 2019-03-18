@@ -18,11 +18,11 @@ export class BookService {
      .catch(error => { return this.processHTTPMsgService.handleError(error); });
     }
     createBooks(book:book):Observable<book[]>{
-      return this.http.post<book[]>(baseURL+'admin/books',{book})
+      return this.http.post<book[]>(baseURL+'admin/books',book)
       .catch(error => { return this.processHTTPMsgService.handleError(error); });
      }
      updateBook(book:book,id:number):Observable<book[]>{
-      return this.http.put<book[]>(baseURL+'admin/books/'+id,{book})
+      return this.http.put<book[]>(baseURL+'admin/books/'+id,book)
       .catch(error => { return this.processHTTPMsgService.handleError(error); });
      }
      deleteBook(id:number):Observable<book[]>{

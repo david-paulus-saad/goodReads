@@ -2,7 +2,7 @@ import { Component, OnInit  } from '@angular/core';
 import { CategoryService} from '../services/category.service';
 import {category} from '../shared/category'
 import {MatDialog, MatDialogRef} from '@angular/material';
-
+import {AuthService} from '../services/auth.service'
 @Component({
   selector: 'app-admin-categories',
   templateUrl: './admin-categories.component.html',
@@ -12,9 +12,29 @@ export class AdminCategoriesComponent implements OnInit {
 
   cat:category[]
 err:string
-  constructor(public dialog: MatDialog,private catService:CategoryService) { }
-
+username:string
+  constructor(public dialog: MatDialog,private catService:CategoryService,
+    private authService:AuthService) { }
+  logout(){
+    if(this.authService.isLoggedIn()){
+      this.authService.logOut()
+    }
+    /**
+     * 
+     *  if(this.authService.isLoggedIn()) {
+    this.authService.getUsername().subscribe((name)=>{
+      this.username=name;
+    })
+  }
+     */
+    
+  }
   ngOnInit() {
+    if(this.authService.isLoggedIn()) {
+      this.authService.getUsername().subscribe((name)=>{
+        this.username=name;
+      })
+    }
     this.catService.getCategories().subscribe((cats)=>{
      this.cat=cats;
      console.log(this.cat);

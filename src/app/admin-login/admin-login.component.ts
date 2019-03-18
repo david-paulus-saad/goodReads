@@ -22,7 +22,7 @@ export class AdminLoginComponent implements OnInit {
   }
   onSubmit() {
     console.log("User: ", this.loginForm.value);
-    this.authService.login( 
+    this.authService.loginAdmin( 
        {username:this.loginForm.value.username,
         password:this.loginForm.value.password})
       .subscribe(res => {

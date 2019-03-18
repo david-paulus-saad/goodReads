@@ -7,11 +7,13 @@ import {category} from '../shared/category'
   styleUrls: ['./category.component.css']
 })
 export class CategoryComponent implements OnInit {
-   cat:category
+   cat:category[]
   constructor(private catService:CategoryService) { }
 
   ngOnInit() {
-
+    this.catService.getCategories().subscribe((cats)=>{
+      this.cat=cats;
+    })
   }
 
 }

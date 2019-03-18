@@ -8,7 +8,13 @@
     <li class="nav-item">
       <a class="nav-link" routerLink="/admin-authors" routerLinkActive="active">Authors</a>
     </li>
-  
+    <li>
+      <div *ngIf="username">
+        <h3>Hello , {{username}}</h3>
+        <button (click)="logout()">Logout</button>
+    </div>
+    
+     </li>
   </ul>
   
   <!---------ADD Category----------->

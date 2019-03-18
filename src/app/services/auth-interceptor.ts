@@ -12,7 +12,7 @@ export class AuthInterceptor implements HttpInterceptor {
     const authService = this.inj.get(AuthService);
     // Get the auth header from the service.
     const authToken = authService.getToken();
-    console.log('Interceptor: ' + authToken);
+    console.log('Interceptor: token' + authToken);
     // Clone the request to add the new header.
     const authReq = req.clone({headers: req.headers.set('Authorization', 'bearer ' + authToken)});
         // Pass on the cloned request instead of the original request.
@@ -27,7 +27,7 @@ export class UnauthorizedInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const authService = this.inj.get(AuthService);
     const authToken = authService.getToken();
-
+    console.log("add token",authToken)
     return next
       .handle(req)
       .do((event: HttpEvent<any>) => {
